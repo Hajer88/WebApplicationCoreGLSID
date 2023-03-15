@@ -11,6 +11,7 @@ namespace WebApplicationCoreGLSID.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            
             migrationBuilder.DeleteData(
                 table: "Categs",
                 keyColumn: "Id",

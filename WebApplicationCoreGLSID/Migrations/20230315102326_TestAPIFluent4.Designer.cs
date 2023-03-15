@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationCoreGLSID.Models;
 
@@ -11,9 +12,11 @@ using WebApplicationCoreGLSID.Models;
 namespace WebApplicationCoreGLSID.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230315102326_TestAPIFluent4")]
+    partial class TestAPIFluent4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,28 +64,10 @@ namespace WebApplicationCoreGLSID.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebApplicationCoreGLSID.Models.ImageProduit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("WebApplicationCoreGLSID.Models.Produit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ImageProduitId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -90,9 +75,6 @@ namespace WebApplicationCoreGLSID.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImageProduitId")
-                        .IsUnique();
 
                     b.ToTable("produits");
                 });
@@ -134,17 +116,6 @@ namespace WebApplicationCoreGLSID.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApplicationCoreGLSID.Models.Produit", b =>
-                {
-                    b.HasOne("WebApplicationCoreGLSID.Models.ImageProduit", "Image")
-                        .WithOne("produit")
-                        .HasForeignKey("WebApplicationCoreGLSID.Models.Produit", "ImageProduitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-                });
-
             modelBuilder.Entity("WebApplicationCoreGLSID.Models.SousCategorie", b =>
                 {
                     b.HasOne("WebApplicationCoreGLSID.Models.Categorie", "categorie")
@@ -154,11 +125,6 @@ namespace WebApplicationCoreGLSID.Migrations
                         .IsRequired();
 
                     b.Navigation("categorie");
-                });
-
-            modelBuilder.Entity("WebApplicationCoreGLSID.Models.ImageProduit", b =>
-                {
-                    b.Navigation("produit");
                 });
 #pragma warning restore 612, 618
         }
