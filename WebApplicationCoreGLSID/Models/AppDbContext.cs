@@ -14,6 +14,10 @@ namespace WebApplicationCoreGLSID.Models
          protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Categorie>().ToTable("Categs");
+            modelBuilder.Entity<Categorie>()
+                .Property(e => e.Name)
+                .HasColumnType("varchar(20)")
+                .HasDefaultValue("A");
            
         }
     }
