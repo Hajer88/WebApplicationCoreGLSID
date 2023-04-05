@@ -55,6 +55,14 @@ namespace WebApplicationCoreGLSID.Models
             //        j.HasKey(t => new { t.ProduitId, t.SousCategorieId });
             //    });
 
+            //Seed Data From JSon File
+            string CatJson = System.IO.File.ReadAllText("categorie.json");
+            List<Categorie> categories = System.Text.Json.
+            JsonSerializer.Deserialize<List<Categorie>>(CatJson);
+            //Seed to categorie
+            foreach (Categorie c in categories)
+                modelBuilder.Entity<Categorie>()
+                .HasData(c);
 
         }
     }
