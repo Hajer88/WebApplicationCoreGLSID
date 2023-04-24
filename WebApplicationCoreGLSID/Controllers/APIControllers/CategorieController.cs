@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationCoreGLSID.Models;
+using WebApplicationCoreGLSID.Models.DTO;
 using WebApplicationCoreGLSID.ServicesContracts;
 
 namespace WebApplicationCoreGLSID.Controllers.APIControllers
@@ -22,13 +23,13 @@ namespace WebApplicationCoreGLSID.Controllers.APIControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewCat(Categorie c)
+        public async Task<IActionResult> CreateNewCat(CategorieDTO c)
         {
             var cat= await categorieService.Create(c);
             return Ok(cat);
         }
         [HttpPut]
-        public IActionResult EditCat(Guid id, Categorie c)
+        public IActionResult EditCat(Guid id, CategorieDTO c)
 
         {
             var t = categorieService.Edit(id, c);

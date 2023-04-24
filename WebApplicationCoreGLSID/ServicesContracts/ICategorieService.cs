@@ -1,12 +1,13 @@
 ﻿using WebApplicationCoreGLSID.Models;
+using WebApplicationCoreGLSID.Models.DTO;
 
 namespace WebApplicationCoreGLSID.ServicesContracts
 {
     public interface ICategorieService
     {
-        Task<List<Categorie>> GetAll();
-        Task<Categorie> Create(Categorie categorie);
-        Categorie Edit(Guid id, Categorie c);
+        Task<List<CategorieDTO>> GetAll();
+        Task<CategorieDTO> Create(CategorieDTO categorie);
+        CategorieDTO Edit(Guid id, CategorieDTO c);
         void Delete(Guid id);
     }
 }
