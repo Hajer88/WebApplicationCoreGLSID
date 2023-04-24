@@ -12,12 +12,14 @@ namespace WebApplicationCoreGLSID.Controllers
             _context = context;
         }
         [Route("Index")]
+        [HttpGet]
         //Lister tous les catégories
         public IActionResult Index()
         {
             return View(_context.categories.ToList());
         }
         [Route("DownloadFile")]
+        [HttpGet]
         public IActionResult DownloadFile()
         {
             byte[] bytes = System.IO.File
