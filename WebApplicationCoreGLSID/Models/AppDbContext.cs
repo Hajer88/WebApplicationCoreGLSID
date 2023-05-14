@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationCoreGLSID.Models
 {
-    public class AppDbContext :DbContext
+    public class AppDbContext :IdentityDbContext<ApplicationUser>
     {
+        
         public AppDbContext(DbContextOptions<AppDbContext> options)
             :base(options)
         {
@@ -15,6 +18,7 @@ namespace WebApplicationCoreGLSID.Models
         public DbSet<ImageProduit> Images { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Categorie>().ToTable("Categs");
             modelBuilder.Entity<Categorie>()
                 .Property(e => e.Name)
